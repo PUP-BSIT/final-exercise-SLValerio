@@ -1,21 +1,23 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Use Firebase REST API to add data
     $data = json_decode(file_get_contents("php://input"));
 
-    $name = $data->name;
-    $age = $data->age;
-    $birthday = $data->birthday;
-    $hobbies = $data->hobbies;
-    $loveLanguage = $data->love_language;
+    // Replace this with your Firebase Realtime Database URL
+    $firebaseDatabaseURL = "https://clover-0320-default-rtdb.firebaseio.com/";
 
-    $sql = "INSERT INTO friends (name, age, birthday, hobbies, love_language)
-        VALUES ('$name', $age, '$birthday', '$hobbies', '$loveLanguage')";
+    // Construct the endpoint URL for your friends data
+    $friendsEndpoint = $firebaseDatabaseURL . "friends.json";
 
-    $result = $conn->query($sql);
-    
-    if ($result !== TRUE) {
-        http_response_code(500);
-        echo json_encode(['error' => 'Error adding friend: ' . $conn->error]);} 
+    $response = file_get_contents($friendsEndpoint, false,
+        stream_context_create([
+            'http' => [
+                'method' => 'POST',
+                'header' => "Content-type: application/json",
+                'content' => json_encode($data)
+            ]
+    ]));
 
-    echo json_encode(['message' => 'A New Friend Added Successfully!']);
-}?>
+    echo $response;
+}
+?>

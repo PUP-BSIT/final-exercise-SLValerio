@@ -1,20 +1,23 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    // Use Firebase REST API to delete data
     $data = json_decode(file_get_contents("php://input"));
 
-    $id = intval($data->id);
+    // Replace this with your Firebase Realtime Database URL
+    $firebaseDatabaseURL = "https://clover-0320-default-rtdb.firebaseio.com/";
 
-    $stmt = $conn->prepare("DELETE FROM friends WHERE id=?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
+    // Construct the endpoint URL for your friends data
+    $friendsEndpoint = $firebaseDatabaseURL . "friends.json";
 
-    if ($stmt->affected_rows > 0) {
-        echo json_encode(['message' => 'Deleted Successfully!']);
-    } else {
-        http_response_code(500);
-        echo json_encode(['error' => 'Error deleting friend: ' . $conn->error]);
-    }
+    $response = file_get_contents($friendsEndpoint, false,
+        stream_context_create([
+        'http' => [
+            'method' => 'DELETE',
+            'header' => "Content-type: application/json",
+            'content' => json_encode($data)
+        ]
+    ]));
 
-    $stmt->close();
+    echo $response;
 }
 ?>

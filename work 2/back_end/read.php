@@ -1,18 +1,20 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $result = $conn->query("SELECT * FROM friends");
+    // Use Firebase REST API to retrieve data
+    // Replace this with your Firebase Realtime Database URL
+    $firebaseDatabaseURL = "https://clover-0320-default-rtdb.firebaseio.com/";
 
-    if ($result === false) {
-        http_response_code(500);
-        echo json_encode(['error' =>
-            'Error retrieving friends: ' . $conn->error]);
-    } else {
-        $friends = [];
-        while ($row = $result->fetch_assoc()) {
-            $friends[] = $row;
-        }
+    // Construct the endpoint URL for your friends data
+    $friendsEndpoint = $firebaseDatabaseURL . "friends.json";
 
-        echo json_encode($friends);
-    }
+    $response = file_get_contents($friendsEndpoint, false,
+        stream_context_create([
+            'http' => [
+                'method' => 'GET',
+                'header' => "Content-type: application/json"
+            ]
+    ]));
+
+    echo $response;
 }
 ?>

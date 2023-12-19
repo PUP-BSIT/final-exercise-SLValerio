@@ -1,14 +1,47 @@
-const backEnd = "https://valerio18.likha.website/api.php";
+import { initializeApp } from
+    'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
+import { getDatabase, ref, push, set, get, update, remove } from
+    'https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDV4JdW_zpKe2nXd2x4FR5YRsBbjMK6s4U",
+  authDomain: "clover-0320.firebaseapp.com",
+  databaseURL: "https://clover-0320-default-rtdb.firebaseio.com",
+  projectId: "clover-0320",
+  storageBucket: "clover-0320.appspot.com",
+  messagingSenderId: "564028262077",
+  appId: "1:564028262077:web:a8468a57b7a2d1bd3819d4",
+  measurementId: "G-9S876VQ8Y2"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
 document.addEventListener('DOMContentLoaded', function () {
     fetchFriendshipList();
 });
 
 function fetchFriendshipList() {
-    fetch(backEnd)
-        .then(response => response.json())
-        .then(data => displayFriendshipList(data));
+    const friendsRef = ref(db, 'friends');
+    get(friendsRef)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+                const friends = data ? Object.values(data) : [];
+                
+                // Log the friends array for debugging
+                console.log('Friends array:', friends);
+
+                displayFriendshipList(friends);
+            } else {
+                console.log("No data available");
+            }
+        })
+        .catch((error) => {
+            console.error('Error fetching data:', error);
+        });
 }
+
 
 function displayFriendshipList(friends) {
     const tableBody = document.querySelector('#friend_table tbody');
@@ -16,21 +49,28 @@ function displayFriendshipList(friends) {
 
     friends.forEach(friend => {
         const row = tableBody.insertRow();
-        for (const key in friend) {
-            if (key !== 'id') {
-                const cell = row.insertCell();
-                cell.innerHTML = friend[key];
-            }
-        }
+        const fieldsOrder = ['name', 'age', 'birthday', 'hobbies', 'love_language'];
+
+        fieldsOrder.forEach(key => {
+            const cell = row.insertCell();
+            cell.innerHTML = friend[key];
+        });
+
+        // Add a data-id attribute to the row to store the id
+        row.setAttribute('data-id', friend.id);
 
         const actionsCell = row.insertCell();
         actionsCell.innerHTML =
-            `<button onclick="editFriend(${friend.id})">Edit</button>
-             <button onclick="deleteFriend(${friend.id})">Delete</button>`;
+            `<button onclick="import('./script.js').
+                then(module => module.editFriend('${friend.id}'))">
+                    Edit</button>
+            <button onclick="import('./script.js').
+                then(module => module.deleteFriend('${friend.id}'))">
+                    Delete</button>`;
     });
 }
 
-function addToFriendshipList() {
+export function addToFriendshipList() {
     const name = document.getElementById('name').value;
     const age = document.getElementById('age').value;
     const birthday = document.getElementById('birthday').value;
@@ -42,38 +82,34 @@ function addToFriendshipList() {
         return;
     }
 
-    const data = {
+    const newFriendRef = push(ref(db, 'friends')).key;
+    const newFriendId = newFriendRef;
+
+    set(ref(db, `friends/${newFriendRef}`), {
+        id: newFriendId,
         name: name,
         age: age,
         birthday: birthday,
         hobbies: hobbies,
         love_language: loveLanguage
-    };
-
-    fetch(backEnd, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
     })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message);
+        .then(() => {
+            alert('A New Friend Added Successfully!');
             fetchFriendshipList();
         })
-        .catch((error) => {
+        .catch(error => {
             console.error('Error:', error);
         });
 }
 
-async function editFriend(id) {
-    const friend = await getFriendById(id);
+export function editFriend(id) {
+    getFriendById(id).then(friend => {
+        console.log('Friend details:', friend);
 
-    if (!friend) {
-        alert('Friend not found.');
-        return;
-    }
+        if (!friend) {
+            alert('Friend not found.');
+            return;
+        }
 
     const form = `
         <form id="edit_form">
@@ -103,25 +139,28 @@ async function editFriend(id) {
                 <option value="Physical Touch">Physical Touch</option>
             </select>
             <div id="popup_buttons">
-                <button type="button" onclick=
-                    "updateFriend(${friend.id})">Update</button>
-                <button type="button" onclick="cancelEdit()">Cancel</button>
+                <button onclick="import('./script.js').
+                    then(module => module.updateFriend('${friend.id}'))">
+                        Update</button>
+                <button onclick="import('./script.js').
+                    then(module => module.cancelEdit())">Cancel</button>
             </div> 
         </form>
     `;
-
+    
     const popup = document.createElement('div');
     popup.className = 'popup';
     popup.innerHTML = form;
 
     document.body.appendChild(popup);
+});
 }
 
-function cancelEdit() {
+export function cancelEdit() {
     closePopup();
 }
 
-function updateFriend(id) {
+export function updateFriend(id) {
     const name = document.getElementById('edit_name').value;
     const age = document.getElementById('edit_age').value;
     const birthday = document.getElementById('edit_birthday').value;
@@ -142,16 +181,9 @@ function updateFriend(id) {
         love_language: loveLanguage
     };
 
-    fetch(backEnd, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message || 'Updated Successfully!');
+    update(ref(db, `friends/${id}`), data)
+        .then(() => {
+            alert('Friend Updated Successfully!');
             fetchFriendshipList();
             closePopup();
         })
@@ -160,39 +192,38 @@ function updateFriend(id) {
         });
 }
 
-
-function closePopup() {
+export function closePopup() {
     const popup = document.querySelector('.popup');
     if (popup) {
         popup.remove();
     }
 }
 
-function getFriendById(id) {
-    return fetch(backEnd)
-        .then(response => response.json())
-        .then(data => data.find(friend => friend.id == id))
+export function getFriendById(id) {
+    return get(ref(db, 'friends'))
+        .then(snapshot => {
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+                return Object.values(data).find(friend => friend.id === id);
+            } else {
+                return null;
+            }
+        })
         .catch(error => {
             console.error('Error fetching data:', error);
             return null;
         });
 }
 
+export function deleteFriend(id) {
+    console.log('Deleting friend with ID:', id);
 
-function deleteFriend(id) {
     const confirmDelete = confirm('Are you sure you want to delete this?');
 
     if (confirmDelete) {
-        fetch(backEnd, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ id: id }),
-        })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
+        remove(ref(db, `friends/${id}`))
+            .then(() => {
+                alert('Deleted Successfully!');
                 fetchFriendshipList();
             })
             .catch((error) => {
