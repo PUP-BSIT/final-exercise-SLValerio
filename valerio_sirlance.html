@@ -5,13 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
-	<link rel="icon" href="./images/icon.png" />
+	<link rel="icon" href="./assets/images/icon.png" />
     <title>Valerio Sir Lance Page</title>
 </head>
 
 <body>
+	<audio id="background_music" src="./assets/bgm.mp3" loop>
+    </audio>
+	
     <div class="container" id="header">
-        <h1>Valerio, Sir Lance</h1>
+        <h1 id="bgm">Valerio, Sir Lance</h1>
+		<h3>Click my name for a musical surprise!</h3>
     </div>
 
 	<div class="container" id="likes">
@@ -19,6 +23,7 @@
         <div class="interests-row">
             <div class="interest-item">
                 <li>Arts and Crafts</li>
+				<img src="assets/images/like 1.png" alt="Turtle - Digital Art"/>
                 <p>My passion extends across diverse artistic
 					expressions—traditional mediums like drawing, painting,
 					and sculpting to the dynamic realm of digital arts.
@@ -28,6 +33,8 @@
             </div>
             <div class="interest-item">
                 <li>Music Thingies</li>
+				<img src="assets/images/like 2.jpg"
+					alt="My Musical Instruments"/>
                 <p>Music, a multifaceted passion, unfolds through diverse
 					tunes, heartfelt singing, and playing my beloved kalimba.
 					Each element weaves into a rich, fulfilling musical
@@ -36,6 +43,7 @@
             </div>
             <div class="interest-item">
                 <li>Shopping and Galas</li>
+				<img src="assets/images/like 3.png" alt="Hamilton Memoria"/>
                 <p>Engaging in retail therapy at malls, searching for items
 					that pique my interest, is a personal hobby. Equally,
 					the joy of venturing into unexplored places and embarking
@@ -47,6 +55,7 @@
         <div class="interests-row">
             <div class="interest-item">
                 <li>Clothings and Attires</li>
+				<img src="assets/images/like 4.jpg" alt="Me in Kimono"/>
                 <p>Presenting myself well on any occasion is a hobby of mine,
 					aiming to stay "in" and stylish in every season.
 					Whether it's a casual gathering or a formal event, I
@@ -56,6 +65,7 @@
             </div>
             <div class="interest-item">
                 <li>Gaming</li>
+				<img src="assets/images/like 5.jpg" alt="Mobile Legends"/>
                 <p>Finally, gaming is an integral part of my daily life,
 					providing entertainment through the challenges and
 					quests embedded in various games. It's a source of joy
@@ -68,16 +78,66 @@
     <div class="container" id="works">
         <h2>My Works</h2>
         <div class="works-row">
-            <li><a href="./work1/countries_of_the_world.html" target=”_blank” >
-				Countries of the World</a></li>
-            <li><a href="./work2/Rest API.html" target=”_blank” >
-				Friendship List</a></li>
-            <li><a href="#">Work 3</a></li>
-        </div>
+			<div class="work-item">
+                <li><a href="./work1/countries_of_the_world.html"
+					target="_blank">Countries of the World</a></li>
+				<a href="./work1/countries_of_the_world.html" target="_blank">
+					<img src="assets/images/work 1.png"
+					alt="Countries of the World"/>
+				</a>	
+                <p>Curious about fascinating facts about different countries?
+					Explore this innovative project utilizing an API to
+					enlighten users with intriguing insights about
+					any country!</p>
+            </div>
+            <div class="work-item">
+                <li><a href="./work2/Rest API.html" target="_blank">
+					Friendship List</a></li>
+				<a href="./work2/Rest API.html" target="_blank">
+					<img src="assets/images/work 2.png"
+					alt="My Friendship List"/>
+				</a>
+                <p>Join the camaraderie! Explore my friend circle in this
+					project that used Firebase Realtime Database. Discover
+					interesting tidbits about my pals, and feel welcome to add
+					yourself to the list of friends!</p>
+            </div>
+            <div class="work-item">
+				<li><a href="./work3/index.html" target="_blank">
+					Clever Clover</a></li>
+				<a href="./work3/index.html" target="_blank">
+					<img src="assets/images/work 3.png" alt="Clever Clover"/>
+				</a>
+                <p>Discover help and support at Clever Clover - your 
+					compassionate ally for those in need. Dive into this project
+					made for redemption for expert assistance in basic math.</p>
+            </div>
+		</div>
 
-        <div class="works-row">
-            <li><a href="#">Work 4</a></li>
-            <li><a href="#">Work 5</a></li>
+		<div class="works-row">
+            <div class="work-item">
+                <li><a
+					href="https://sites.google.com/view/sir-lance-valerio/home"
+					target="_blank">My Portfolio</a></li>
+				<a href="https://sites.google.com/view/sir-lance-valerio/home"
+					target="_blank"><img src="assets/images/work 4.png" 
+					alt="My Portfolio"/>
+				</a>
+                <p>Embark on the project where it all begins - my portfolio,
+					the very first website created as an IT endeavor. Delve
+					into a site meticulously crafted with Google Site, and
+					uncover more about me.</p>
+            </div>
+            <div class="work-item">
+				<li><a href="https://midknights.itch.io/dreaming"
+					target="_blank">Dreaming</a></li>
+				<a href="https://midknights.itch.io/dreaming" target="_blank">
+					<img src="assets/images/work 5.png" alt="Dreaming"/>
+				</a>
+                <p>Enjoy the captivating game 'Midknights: Dreaming' - a 2-D
+					pixel adventure. Play as Tala, a Guardian of Dreams,
+					maintaining serenity in the enigmatic Realm of Dreams.</p>
+            </div>
         </div>
     </div>
 
@@ -111,22 +171,22 @@
     <div class="container" id="pics">
         <h2>Gallery</h2>
         <img
-			 src="images/1.png"
+			 src="assets/images/1.png"
 			 alt="Sir Lance's Image 1"/>
 		<img
-			 src="images/2.jpg"
+			 src="assets/images/2.jpg"
 			 alt="Sir Lance's Image 2"/>
 		<img
-			 src="images/3.jpg"
+			 src="assets/images/3.jpg"
 			 alt="Sir Lance's Image 3"/>
 		<img
-			 src="images/4.png"
+			 src="assets/images/4.png"
 			 alt="Sir Lance's Image 4"/>
 		<img
-			 src="images/5.png"
+			 src="assets/images/5.png"
 			 alt="Sir Lance's Image 5"/>
 		<img
-			 src="images/6.jpg"
+			 src="assets/images/6.jpg"
 			 alt="Sir Lance's Image 6"/>
     </div>
 
@@ -135,6 +195,11 @@
         <div class="goals-row">
             <li>Stability in Life</li>
             <li>The "Impossible" Dream</li>
+        </div>
+
+		<div class="goals-row">
+            <img src="assets/images/goal 1.png" alt="Stable Life"/>
+			<img src="assets/images/goal 2.png" alt="Aurora Borealis"/>
         </div>
 
         <div class="goals-row">

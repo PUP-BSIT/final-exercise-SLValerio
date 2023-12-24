@@ -2,11 +2,11 @@
 
 @font-face {
     font-family: 'VintageParty';
-    src: url('fonts/VintageParty-FreeVersion.ttf');
+    src: url('assets/fonts/VintageParty-FreeVersion.ttf');
 }
 
 body {
-    background-image: url('./images/BG.png');
+    background-image: url('./assets/images/BG.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size:cover;
@@ -23,6 +23,10 @@ body {
     padding: 20px;
     color: black;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+a {
+    text-decoration: none;
 }
 
 h1, h2 {
@@ -54,6 +58,11 @@ h3, #likes li, #works li, #goals li {
     font-weight: bold;
 }
 
+#header h3 {
+    color:darkgreen;
+    -webkit-text-stroke: 0.3px black; 
+}
+
 h3 {
     text-align: center;
 }
@@ -68,7 +77,12 @@ h3 {
     text-align: center;
 }
 
-li:hover, img:hover, button:hover {
+h1:hover, h2:hover {
+    transform: scale(1.03);
+}
+
+li:hover, #likes p:hover, #works p:hover, #testimonials p:hover, #goals p:hover,
+img:hover, button:hover, .comment-container:hover, #display_latest:hover {
   transform: scale(1.06);
 }
 
@@ -133,16 +147,16 @@ p, li, label, .comment-content, .comment-replies {
     font-family: 'Tahoma', sans-serif;
 }
 
-#likes li, #likes p, #works li, #testimonials li,
-#testimonials p, #goals li, #goals p {
+#likes li, #likes p, #likes img, #works li, #works p, #works img,
+#testimonials li, #testimonials p, #goals li, #goals img, #goals p {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-#likes li, #works li, #testimonials li, #goals li, #likes p, #works p,
-#testimonials p, #goals p {
+#likes li, #likes p, #likes img, #testimonials li, #goals li,  #works li, 
+#works p, #works img, #testimonials p, #goals img, #goals p {
     margin: 10px;
     background: linear-gradient(to bottom, white, #ddd); 
     border: 2px solid black;
@@ -152,7 +166,7 @@ p, li, label, .comment-content, .comment-replies {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
-#likes .interests-row {
+#likes .interests-row, #works .works-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -263,18 +277,24 @@ p, li, label, .comment-content, .comment-replies {
 }
 
 #display_latest {
-    margin-top: 20px;
-}
-
-#display_latest {
     cursor: pointer;
     font-weight: bold;
     display: inline-block;
     padding: 5px 10px;
+    margin-top: 20px;
     border-radius: 8px;
     background-color: #009a5e;
     color: #ffc567;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); 
     -webkit-text-stroke: 0.3px black; 
+}
+
+#likes .interests-row .interest-item img, #works .works-row .work-item img, 
+#goals .goals-row img {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    margin: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }

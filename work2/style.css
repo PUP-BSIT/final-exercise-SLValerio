@@ -2,11 +2,11 @@
 
 @font-face {
     font-family: 'VintageParty';
-    src: url('../fonts/VintageParty-FreeVersion.ttf');
+    src: url('../assets/fonts/VintageParty-FreeVersion.ttf');
 }
 
 body {
-    background-image: url('../images/friends.png');
+    background-image: url('../assets/images/friends.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size:cover;

@@ -1,0 +1,124 @@
+body {
+    background-image: url("../assets/images/clover_bg.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly; 
+    height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; 
+    width: 100%; 
+}
+
+img {
+    max-height: 100px;
+    max-width: 100px;
+    background-color: antiquewhite;
+    border: 10px solid #311509;
+}
+
+h1 {
+    color: rgb(54, 141, 93);
+    text-align: center;
+    background-color: antiquewhite;
+    padding: 15px;
+    border: 10px solid #311509;
+    text-shadow: 3px 3px 3px rgb(227, 201, 86);
+}
+
+.report-prob {
+    text-align: center;
+    color: #311509;
+    background-color: antiquewhite;
+    padding: 10px;
+    border: 10px solid #311509;
+}
+
+h2 {
+    color: goldenrod;
+    text-shadow: 3px 3px 3px rgba(0, 1, 0, 1);
+}
+
+p {
+    color: #EFE1E1;
+    font-weight: 500;
+}
+
+input, button {
+    margin: 10px 0;
+    background-color: rgb(255, 230, 167);
+    color: #311509;
+    font-weight: 600;
+}
+
+.selection {
+    color: antiquewhite;
+    text-align: center;
+    text-shadow: 3px 3px 3px rgba(0, 1, 0, 1);
+}
+
+.odd-even, .fibonacci, .factorial {
+    background-color: rgb(83, 60, 21);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: 10px solid #311509;
+    text-align: center;
+    flex-direction: column;
+}
+
+.name {
+    color: antiquewhite;
+    text-shadow: 3px 3px 3px rgba(0, 1, 0, 1);
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        display: block;
+        background-size: auto; 
+    }
+
+    .row {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .app-name {
+        width: 80%;
+        text-align:justify; 
+    }
+
+    .logo img {
+        max-height: 70px;
+        max-width: 70px;
+    }
+
+    .report-prob {
+        width: 50%;
+        text-align: center;
+    }
+
+    .selection {
+        width: 100%;
+        text-align: center;  
+    }
+
+    .odd-even, .fibonacci, .factorial {
+        margin-top: 10px;
+        width: 80%;
+    }
+
+    .name {
+        width: 100%;
+        text-align: center;
+    }
+}

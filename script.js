@@ -45,3 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateCommentList();
 });
+
+document.getElementById("bgm").addEventListener("click", () => {
+    const audio = document.getElementById("background_music");
+    audio.play();
+  });
