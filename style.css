@@ -301,3 +301,114 @@ p, li, label, .comment-content, .comment-replies {
     margin: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
+
+#clover_logo {
+    position: fixed;
+    bottom: 10px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+#clover_logo_img {
+    width: 50px;
+    height: 50px; 
+    transition: width 0.3s ease-in-out;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+#navigation_container.open #clover_logo_img {
+    width: 50px;
+    height: 50px;
+}
+
+#navigation_container {
+    /* Remove the transition property from here */
+    left: -250px;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #009a5e;
+    overflow-y: auto;
+    z-index: 1000;
+    border-right: #ffc567;
+    border-right-style: double;
+    border-right-width: 10px;
+    transition: left 0.3s ease-in-out; /* Keep only background-color transition */
+}
+
+#social_media {
+    padding: 5px;
+    text-align: center;
+}
+
+#navigation_container #section {
+    margin-left: 15px;
+    text-align: center;
+}
+
+#social_media a, #navigation_container a {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    text-decoration: none;
+    font-family: 'Tahoma', sans-serif;
+    font-weight: bold;
+    color: white;
+    -webkit-text-stroke: 0.3px black; 
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+#social_media a {
+    font-size: smaller;
+    margin-left: 10px;
+}
+
+#navigation_container h3 {
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: darkgreen;
+    -webkit-text-stroke: 0.3px black; 
+    background: #ffc567;
+    border-top-style: dotted;
+    border-bottom-style: dotted;
+    border-color: #009a5e;
+}
+
+#navigation_container #name {
+    margin-top: 20px;
+    font-family: 'VintageParty';
+    color: #ffc567;
+    font-size: x-large;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); 
+    -webkit-text-stroke: 0.1px black; 
+    letter-spacing: 2.5px;
+    text-align: center;
+    border-top-style: double;
+    border-bottom-style: double;
+    padding: 3px;
+    border-color: #ffc567;
+    border-width: 5px;
+    margin-bottom: 5px;
+}
+
+#navigation_container #name {
+    display: block;
+    text-align: center; 
+    width: 100%; 
+}
+
+#social_media img {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+#navigation_container a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}

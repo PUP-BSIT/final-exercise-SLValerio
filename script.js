@@ -49,4 +49,21 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("bgm").addEventListener("click", () => {
     const audio = document.getElementById("background_music");
     audio.play();
-  });
+});
+
+function toggleNav() {
+    const navContainer = document.getElementById('navigation_container');
+    const cloverLogo = document.getElementById('clover_logo');
+
+    navContainer.classList.toggle('open');
+
+    cloverLogo.style.left = navContainer.classList.contains('open') ?
+        '190px' : '20px';
+
+    if (!navContainer.classList.contains('open')) {
+        navContainer.style.left = '-250px';
+        return;
+    }
+
+    navContainer.style.left = '0';
+}
