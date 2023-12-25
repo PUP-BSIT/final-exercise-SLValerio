@@ -53,7 +53,7 @@ h2 {
     border-style:dotted;
 }
 
-h3, #likes li, #works li, #goals li {
+h3, #likes li, #works li, #future li, #goals li {
     font-family: 'Tahoma', sans-serif;
     font-weight: bold;
 }
@@ -67,7 +67,7 @@ h3 {
     text-align: center;
 }
 
-#likes li, #works li, #goals li, #testimonials li, #comments li {
+#likes li, #works li, #future li, #goals li, #testimonials li, #comments li {
     font-weight: bold;
     color: darkgreen;
     list-style-type: none;
@@ -81,8 +81,9 @@ h1:hover, h2:hover {
     transform: scale(1.03);
 }
 
-li:hover, #likes p:hover, #works p:hover, #testimonials p:hover, #goals p:hover,
-img:hover, button:hover, .comment-container:hover, #display_latest:hover {
+li:hover, #likes p:hover, #works p:hover, #testimonials p:hover,
+#future p:hover, #goals p:hover, img:hover, button:hover,
+.comment-container:hover, #display_latest:hover {
   transform: scale(1.06);
 }
 
@@ -148,7 +149,8 @@ p, li, label, .comment-content, .comment-replies {
 }
 
 #likes li, #likes p, #likes img, #works li, #works p, #works img,
-#testimonials li, #testimonials p, #goals li, #goals img, #goals p {
+#testimonials li, #testimonials p, #future li, #future img, #future p, 
+#goals li, #goals img, #goals p {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -156,7 +158,8 @@ p, li, label, .comment-content, .comment-replies {
 }
 
 #likes li, #likes p, #likes img, #testimonials li, #goals li,  #works li, 
-#works p, #works img, #testimonials p, #goals img, #goals p {
+#works p, #works img, #testimonials p, #future li, #future img, #future p,
+#goals img, #goals p {
     margin: 10px;
     background: linear-gradient(to bottom, white, #ddd); 
     border: 2px solid black;
@@ -166,7 +169,7 @@ p, li, label, .comment-content, .comment-replies {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
-#likes .interests-row, #works .works-row {
+#likes .interests-row, #works .works-row, #future .future-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -291,7 +294,7 @@ p, li, label, .comment-content, .comment-replies {
 }
 
 #likes .interests-row .interest-item img, #works .works-row .work-item img, 
-#goals .goals-row img {
+#future .future-row .future-item img, #goals .goals-row img {
     width: 250px;
     height: 250px;
     border-radius: 15px;
